@@ -1,37 +1,37 @@
-FROM n8nio/n8n:latest-debian
+FROM n8nio/n8n:latest
 
 USER root
 
-RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list && \
-    sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
-        wget gnupg2 ca-certificates \
-        fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 \
-        libatk1.0-0 libcups2 libgbm-dev libgtk-3-0 libnss3 libx11-xcb1 \
-        libxcomposite1 libxdamage1 libxext6 libxfixes3 libxkbcommon-x11-0 \
-        libxrandr2 xdg-utils && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
-
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
-
-RUN rm -f /usr/bin/node && \
-    ln -sf /usr/bin/nodejs /usr/bin/node && \
-    rm -f /usr/bin/npm && \
-    ln -sf /usr/bin/npm /usr/bin/npm
-
-RUN node -v
-
-WORKDIR /home/node
-RUN chown -R node:node /home/node
-
-RUN npm install -g npm@latest && \
-    npm install puppeteer n8n-nodes-puppeteer && \
-    npx puppeteer browsers install chrome && \
-    npm cache clean --force
-
-ENV PUPPETEER_EXECUTABLE_PATH=/home/node/.cache/puppeteer/chrome/linux-*/chrome-linux/chrome
+RUN apk update && \
+    apk add --no-cache \
+        chromium \
+        nss \
+        freetype \
+        harfbuzz \
+        ca-certificates \
+        ttf-freefont \
+        alsa-lib \
+        libxcomposite \
+        libxdamage \
+        libxrandr \
+        libxfixes \
+        libxext \
+        libx11 \
+        libxkbcommon \
+        gtk+3.0 \
+        cups-libs \
+        libwebp \
+        libjpeg-turbo \
+        libpng \
+        libxrender \
+        libxi \
+        dbus \
+        gdk-pixbuf \
+        libdrm \
+        udev \
+        xdg-utils \
+        wget
 
 USER node
+
+RUN npm install puppeteer
