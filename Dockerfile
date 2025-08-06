@@ -18,7 +18,6 @@ RUN apk update && \
         libxext \
         libx11 \
         libxkbcommon \
-        atk \
         gtk+3.0 \
         cups-libs \
         libwebp \
