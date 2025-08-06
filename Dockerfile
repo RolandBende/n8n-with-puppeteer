@@ -17,7 +17,9 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-RUN ln -sf /usr/bin/nodejs /usr/bin/node && \
+RUN rm -f /usr/bin/node && \
+    ln -sf /usr/bin/nodejs /usr/bin/node && \
+    rm -f /usr/bin/npm && \
     ln -sf /usr/bin/npm /usr/bin/npm
 
 RUN node -v
