@@ -18,7 +18,7 @@ RUN apk update && \
         libxext \
         libx11 \
         libxkbcommon \
-        libatk \
+        atk \
         gtk+3.0 \
         cups-libs \
         libwebp \
@@ -26,10 +26,9 @@ RUN apk update && \
         libpng \
         libxrender \
         libxi \
-        libdbus \
-        libgdk-pixbuf \
+        dbus \
+        gdk-pixbuf \
         libdrm \
-        libgbm \
         udev \
         xdg-utils \
         wget
