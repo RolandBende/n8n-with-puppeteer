@@ -33,8 +33,8 @@ RUN apk update && \
         wget
 
 ENV PUPPETEER_CACHE_DIR=/home/node/.cache/puppeteer
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 USER node
 
-RUN npm install puppeteer && \
-    npx puppeteer browsers install chrome
+RUN npm install puppeteer
