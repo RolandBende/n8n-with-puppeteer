@@ -13,11 +13,12 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
         libxrandr2 xdg-utils && \
     rm -rf /var/lib/apt/lists/*
 
+# Upgrade Node.js to v20 (recommended for latest npm/puppeteer)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
 WORKDIR /home/node
 RUN chown -R node:node /home/node
-
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs
 
 USER node
 
