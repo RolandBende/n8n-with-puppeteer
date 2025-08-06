@@ -21,7 +21,7 @@ RUN apk update && apk add --no-cache \
     cairo \
     pango \
     gdk-pixbuf \
-    gtk+3.0 \
+    gtk+3 \
     bash \
     curl \
     wget \
