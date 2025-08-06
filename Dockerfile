@@ -13,16 +13,15 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
         libxrandr2 xdg-utils && \
     rm -rf /var/lib/apt/lists/*
 
-# Upgrade Node.js to v20 (recommended for latest npm/puppeteer)
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 WORKDIR /home/node
 RUN chown -R node:node /home/node
 
-USER node
-
 RUN npm install -g npm@latest && \
     npm install puppeteer n8n-nodes-puppeteer && \
     npx puppeteer browsers install chrome && \
     npm cache clean --force
+
+USER node
